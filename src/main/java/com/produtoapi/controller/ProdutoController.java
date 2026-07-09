@@ -1,9 +1,9 @@
 package com.produtoapi.controller;
+
 import com.produtoapi.model.Produto;
 import com.produtoapi.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -43,5 +43,62 @@ public class ProdutoController {
   @PostMapping("/salvarLista")
   public List<Produto> salvarLista(@RequestBody List<Produto> produtos) {
     return produtoService.salvarLista(produtos);
+  }
+
+
+  // Endpoints de busca por nome
+  @GetMapping("/buscarPorNome")
+  public List<Produto> buscarPorNome(@RequestParam String valor) {
+    return produtoService.findByNome(valor);
+  }
+  @GetMapping("/buscarPorNomeContendo")
+  public List<Produto> buscarPorNomeContendo(@RequestParam String valor) {
+    return produtoService.findByNomeContaining(valor);
+  }
+  @GetMapping("/buscarPorNomeEStatus")
+  public List<Produto> buscarPorNomeComecandoCom(@RequestParam String nome, @RequestParam String status) {
+    return produtoService.findByNomeAndStatus(nome, status);
+  }
+  @GetMapping("/buscarPorNomeComecandoCom")
+  public List<Produto> buscarPorNomeComecandoCom(@RequestParam String valor) {
+    return produtoService.findByNomeStartingWith(valor);
+  }
+  @GetMapping("/buscarPorNomeTerminandoCom")
+  public List<Produto> buscarPorNomeTerminandoCom(@RequestParam String valor) {
+    return produtoService.findByNomeEndingWith(valor);
+  }
+
+
+  // Endpoints de busca por preço
+  @GetMapping("/buscarPorPreco")
+  public List<Produto> buscarPorPreco(@RequestParam Double valor) {
+    return produtoService.findByPreco(valor);
+  }
+  @GetMapping("/buscarPorPrecoMaiorQue")
+  public List<Produto> buscarPorPrecoMaiorQue(@RequestParam Double valor) {
+    return produtoService.findByPrecoGreaterThan(valor);
+  }
+  @GetMapping("/buscarPorPrecoMenorQue")
+  public List<Produto> buscarPorPrecoMenorQue(@RequestParam Double valor) {
+    return produtoService.findByPrecoLessThan(valor);
+  }
+  @GetMapping("/buscarTotalPreco")
+  public Double buscarTotalPreco() {
+    return produtoService.findTotalPreco();
+  }
+
+
+  // Endpoints de busca por quantidade
+  @GetMapping("/buscarPorQuantidade")
+  public List<Produto> buscarPorQuantidade(@RequestParam Integer quantidade) {
+    return produtoService.findByQuantidade(quantidade);
+  }
+  @GetMapping("/buscarPorQuantidadeMaiorQue")
+  public List<Produto> buscarPorQuantidadeMaiorQue(@RequestParam Integer quantidade) {
+    return produtoService.findByQuantidadeGreaterThan(quantidade);
+  }
+  @GetMapping("/buscarPorQuantidadeMenorQue")
+  public List<Produto> buscarPorQuantidadeMenorQue(@RequestParam Integer quantidade) {
+    return produtoService.findByQuantidadeLessThan(quantidade);
   }
 }

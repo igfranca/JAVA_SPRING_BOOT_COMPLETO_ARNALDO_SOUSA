@@ -4,7 +4,6 @@ import com.produtoapi.model.Produto;
 import com.produtoapi.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -41,4 +40,55 @@ public class ProdutoService {
   public List<Produto> salvarLista(List<Produto> produtos) {
     return produtoRepository.saveAll(produtos);
   }
+
+
+  // Metodos de busca detalhada por nome
+  public List<Produto> findByNome(String nome) {
+    return produtoRepository.findByNome(nome);
+  }
+  public List<Produto> findByNomeContaining(String nome) {
+    return produtoRepository.findByNomeContaining(nome);
+  }
+  public List<Produto> findByNomeAndStatus(String nome, String status) {
+    return produtoRepository.findByNomeAndStatus(nome, status);
+  }
+  public List<Produto> findByNomeStartingWith(String nome) {
+    return produtoRepository.findByNomeStartingWith(nome);
+  }
+  public List<Produto> findByNomeEndingWith(String nome) {
+    return produtoRepository.findByNomeEndingWith(nome);
+  }
+
+
+  // Metodos de busca detalhada por preço
+  public List<Produto> findByPreco(Double preco) {
+    return produtoRepository.findByPreco(preco);
+  }
+  public List<Produto> findByPrecoGreaterThan(Double preco) {
+    return produtoRepository.findByPrecoGreaterThan(preco);
+  }
+  public List<Produto> findByPrecoLessThan(Double preco) {
+    return produtoRepository.findByPrecoLessThan(preco);
+  }
+  public Double findTotalPreco() {
+    return produtoRepository.findTotalPreco();
+  }
+
+
+  // Metodos de busca detalhada por quantidade
+  public List<Produto> findByQuantidade (Integer quantidade) {
+    return produtoRepository.findByQuantidade(quantidade);
+  }
+  public List<Produto> findByQuantidadeGreaterThan(Integer quantidade) {
+    return produtoRepository.findByQuantidadeGreaterThan(quantidade);
+  }
+  public List<Produto> findByQuantidadeLessThan(Integer quantidade) {
+    return produtoRepository.findByQuantidadeLessThan(quantidade);
+  }
+
+
+
+
+
+
 }
