@@ -87,8 +87,18 @@ public class ProdutoService {
   }
 
 
-
-
-
-
+  // Metodos de busca detalhada por preço e status
+  public List<Produto> findByStatus(String status) {
+    return produtoRepository.findByStatus(status);
+  }
+  public List<Produto> findByStatusIsNull() {
+    return produtoRepository.findByStatusIsNull();
+  }
+  public List<Produto> findByPrecoAndStatus(Double preco, String status) {
+    return produtoRepository.findByPrecoAndStatus(preco, status);
+  }
+  // Meteodo para trazer o némero total de produtos
+  public Long count() {
+    return produtoRepository.count();
+  }
 }

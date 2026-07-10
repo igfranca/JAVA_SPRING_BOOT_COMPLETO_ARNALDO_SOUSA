@@ -30,4 +30,9 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
   List<Produto> findByQuantidadeGreaterThan(Integer quantidade);
   List<Produto> findByQuantidadeLessThan(Integer quantidade);
 
+
+  // Buscas por preço e status
+  List<Produto> findByStatus(String stauts);
+  List<Produto> findByStatusIsNull();
+  List<Produto> findByPrecoAndStatus(Double preco, String status);
 }
